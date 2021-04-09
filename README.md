@@ -10,17 +10,17 @@
 
 ### Integranters
 
-# Samuel Hernández // https://github.com/sxexsxixoxm
+<p>Samuel Hernández // https://github.com/sxexsxixoxm</p>
 
-# Jesús Aranguren // https://github.com/jesusaranguren675
+<p>Jesús Aranguren // https://github.com/jesusaranguren675</p>
 
-# Moises Villan //
+<p>Moises Villan //</p>
 
-# Lisandro Parra //
+<p>Lisandro Parra //</p>
 
 ### Tutores
 
-# Edward Castañeda //
+<p>Edward Castañeda //</p>
 
 ### Portafolio
 
