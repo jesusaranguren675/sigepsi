@@ -38,7 +38,7 @@ InicioAsset::register($this);
 			</div>
 		</header>
 		<div class="principal">
-			<h2>
+			<h2 class="animate__animated animate__bounce">
 				<strong>Sistema de Gestión de Proyectos Socio-integradores de la Universidad Politécnica Territorial de Caracas "Mariscal Sucre".</strong>
 			</h2>
 			<p>

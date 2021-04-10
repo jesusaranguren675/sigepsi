@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/dataTables.bootstrap4.min.css',
         'css/styles.css',
         'css/sweetalert2.min.css',
+        'css/animate.min.css',
         //'Bootstrap_material/css/mdb.min.css',
     ];
     public $js = [
