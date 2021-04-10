@@ -22,18 +22,12 @@ class DashboardAsset extends AssetBundle
     public $css = [
         'css/dashboard.css',
     ];
+
     public $js = [
-        'js/all.min.js',
-        'https://code.jquery.com/jquery-3.5.1.slim.min.js',
-        'js/bootstrap.bundle.min.js',
-        'js/scripts.js',
-        'js/Chart.min.js',
-        'assets/demo/chart-area-demo.js',
-        'assets/demo/chart-bar-demo.js',
-        'js/jquery.dataTables.min.js',
-        'js/dataTables.bootstrap4.min.js',
-        'assets/demo/datatables-demo.js',
+        'js/sweetalert2.all.min.js',
+        'js/DashboardAlert.js',
     ];
+
     public $depends = [
         'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
