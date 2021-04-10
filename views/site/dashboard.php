@@ -78,12 +78,4 @@ DashboardAsset::register($this);
 	</div>
 </main>
 
-<script>
-	
-	Swal.fire(
-		'Good job!',
-		'You clicked the button!',
-		'success'
-		)
-</script>
 
