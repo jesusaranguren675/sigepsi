@@ -38,15 +38,15 @@ InicioAsset::register($this);
 			</div>
 		</header>
 		<div class="principal">
-			<h2 class="animate__animated animate__bounce">
+			<h2 class="animate__animated animate__backInDown">
 				<strong>Sistema de Gestión de Proyectos Socio-integradores de la Universidad Politécnica Territorial de Caracas "Mariscal Sucre".</strong>
 			</h2>
-			<p>
+			<p class="animate__animated animate__backInLeft">
 				La implementación de este sistema tiene como objetivo el control y seguimiento de los proyectos socio-integradores realizados en la UPTCMS. A su vez nos permitirá como institución tener un historial o banco de proyectos ejecutados.
 			</p>
 		</div>
 
-		<div class="" style="display: flex; justify-content: center;">
+		<div class="animate__animated animate__backInLeft" style="display: flex; justify-content: center;">
 			<div class="col-sm-4" style="display: flex; justify-content: center; ">
 				<div class="card" style="box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 20%);">
 					<div class="card-body" style="    display: flex !important;
@@ -59,7 +59,7 @@ InicioAsset::register($this);
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4" style="display: flex; justify-content: center;">
+			<div class="col-sm-4 animate__animated animate__backInLeft" style="display: flex; justify-content: center;">
 				<div class="card" style="box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 20%);">
 					<div class="card-body" style="    display: flex !important;
 					flex-direction: column !important;
