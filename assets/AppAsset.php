@@ -20,25 +20,22 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/dataTables.bootstrap4.min.css',
-        'css/styles.css',
-        'css/sweetalert2.min.css',
-        'css/animate.min.css',
+        'css/dataTables.bootstrap4.min.css', // Contiene estilos css de bootstrap
+        'css/styles.css', // Contiene los estilos principales del sistema
+        'css/sweetalert2.min.css', // Contiene los estilos css de la librería SweetAlert2
+        'css/animate.min.css', // Contiene los estilos de la librería animate
         //'Bootstrap_material/css/mdb.min.css',
     ];
     public $js = [
-        'js/all.min.js',
+        'js/all.min.js', //Contiene los iconos de la librería Fontawesome
         //'https://code.jquery.com/jquery-3.5.1.slim.min.js',
         'js/bootstrap.bundle.min.js',
-        'js/scripts.js',
-        'js/Chart.min.js',
+        'js/scripts.js', //Contiene el script del menu del sistema
+        'js/Chart.min.js', //Contiene la libreria de graficas Chart.js
         'js/chartprincipal.js',
-        'assets/demo/chart-area-demo.js',
-        'assets/demo/chart-bar-demo.js',
-        'js/jquery.dataTables.min.js',
-        'js/dataTables.bootstrap4.min.js',
-        'assets/demo/datatables-demo.js',
-        'js/sweetalert2.all.min.js',
+        'js/jquery.dataTables.min.js',  // Contiene script de la libreria DataTable
+        'js/dataTables.bootstrap4.min.js', // Contiene script de bootstrap js
+        'assets/demo/datatables-demo.js', // Contiene ejemplos de DataTable
     ];
     public $depends = [
         'yii\web\YiiAsset',
