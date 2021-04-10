@@ -226,12 +226,6 @@ else //Si no es invitado se mostrara el contenido siguiente
 
 <script>
 
-
-Swal.fire(
-  'Good job!',
-  'You clicked the button!',
-  'success'
-)
     //Coloca en funcionamiento la grafica principal
     //---------------------------------------------
     $(document).ready(function(){
