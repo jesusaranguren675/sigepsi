@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/dataTables.bootstrap4.min.css',
         'css/styles.css',
+        'css/sweetalert2.min.css',
         //'Bootstrap_material/css/mdb.min.css',
     ];
     public $js = [
@@ -36,6 +37,7 @@ class AppAsset extends AssetBundle
         'js/jquery.dataTables.min.js',
         'js/dataTables.bootstrap4.min.js',
         'assets/demo/datatables-demo.js',
+        'js/sweetalert2.all.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
