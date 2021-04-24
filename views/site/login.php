@@ -42,7 +42,7 @@ LoginAsset::register($this);
         </div>
         <div class="contenedor-form">
             <div class="title-form">
-                <h4>Ingresa sus datos para iniciar sesión</h4>
+                <h4>Ingrese sus datos para iniciar sesión</h4>
             </div>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
