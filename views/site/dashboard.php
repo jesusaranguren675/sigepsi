@@ -7,6 +7,9 @@ DashboardAsset::register($this);
 ?>
 
 
+<div class="cintillo">
+	<?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
+</div>
 <h3 class="title-dashboard">PANEL DE PROYECTOS</h3>
 <div class="estadisticas-dashboard">
 	<div class="card estadisticas">
