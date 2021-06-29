@@ -5,10 +5,10 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "public.estados".
+ * This is the model class for table "estados".
  *
- * @property string $estado
- * @property int $id_estado
+ * @property string|null $estado
+ * @property int|null $id_estado
  */
 class Estados extends \yii\db\ActiveRecord
 {
@@ -17,7 +17,7 @@ class Estados extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'public.estados';
+        return 'estados';
     }
 
     /**
@@ -26,11 +26,9 @@ class Estados extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['estado', 'id_estado'], 'required'],
             [['id_estado'], 'default', 'value' => null],
             [['id_estado'], 'integer'],
-            [['estado'], 'string', 'max' => 50],
-            [['id_estado'], 'unique'],
+            [['estado'], 'string', 'max' => 30],
         ];
     }
 
