@@ -29,7 +29,7 @@ class TiposComunidades extends \yii\db\ActiveRecord
     {
         return [
             [['tipo_comunidad'], 'required'],
-            [['tipo_comunidad'], 'string'],
+            [['tipo_comunidad'], 'string', 'max' => 100],
         ];
     }
 
