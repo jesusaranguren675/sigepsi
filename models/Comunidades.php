@@ -41,7 +41,7 @@ class Comunidades extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rif', 'nombre', 'id_tipo_comunidad', 'telefono_contacto', 'persona_contacto', 'email', 'id_parroquia', 'direccion', 'id_user', 'id_estatus'], 'required'],
+            [['rif', 'nombre', 'id_tipo_comunidad', 'telefono_contacto', 'persona_contacto', 'email', 'id_parroquia', 'direccion', 'id_user', 'id_estatus'], 'required', 'message' => 'El campo es requerido'],
             [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'default', 'value' => null],
             [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'integer'],
             [['rif', 'nombre', 'persona_contacto', 'email', 'direccion'], 'string', 'max' => 100],
@@ -60,12 +60,12 @@ class Comunidades extends \yii\db\ActiveRecord
             'id_comunidad' => 'Id Comunidad',
             'rif' => 'Rif',
             'nombre' => 'Nombre',
-            'id_tipo_comunidad' => 'Id Tipo Comunidad',
-            'telefono_contacto' => 'Telefono Contacto',
-            'persona_contacto' => 'Persona Contacto',
-            'email' => 'Email',
-            'id_parroquia' => 'Id Parroquia',
-            'direccion' => 'Direccion',
+            'id_tipo_comunidad' => 'Tipo de Comunidad',
+            'telefono_contacto' => 'Telefono de Contacto',
+            'persona_contacto' => 'Persona de Contacto',
+            'email' => 'Correo',
+            'id_parroquia' => 'Parroquia',
+            'direccion' => 'Dirección',
             'id_user' => 'Id User',
             'id_estatus' => 'Id Estatus',
         ];
