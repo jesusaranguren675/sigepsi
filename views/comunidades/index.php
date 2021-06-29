@@ -7,12 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ComunidadesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comunidades';
+$this->title = 'COMUNIDADES';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="comunidades-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="cintillo">
+    <?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
+</div>
+<h3 class="title-dashboard"><?= Html::encode($this->title) ?></h3>
+
+
+<div class="comunidades-index">
 
     <p>
         <?= Html::a('Create Comunidades', ['create'], ['class' => 'btn btn-success']) ?>
