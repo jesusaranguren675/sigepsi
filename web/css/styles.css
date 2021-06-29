@@ -186,6 +186,10 @@ body {
   margin-left: 15px;
 }
 
+.help-block {
+  color: red;
+}
+
 .contenido-principal {
   background: #fff;
   width: 80%;
