@@ -5,11 +5,11 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "public.municipios".
+ * This is the model class for table "municipios".
  *
- * @property int $id_estado
- * @property string $municipio
- * @property int $id_municipio
+ * @property int|null $id_estado
+ * @property string|null $municipio
+ * @property int|null $id_municipio
  */
 class Municipios extends \yii\db\ActiveRecord
 {
@@ -18,7 +18,7 @@ class Municipios extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'public.municipios';
+        return 'municipios';
     }
 
     /**
@@ -27,12 +27,9 @@ class Municipios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_estado', 'municipio', 'id_municipio'], 'required'],
             [['id_estado', 'id_municipio'], 'default', 'value' => null],
             [['id_estado', 'id_municipio'], 'integer'],
-            [['municipio'], 'string', 'max' => 50],
-            [['id_municipio'], 'unique'],
-            [['id_estado'], 'exist', 'skipOnError' => true, 'targetClass' => Estados::className(), 'targetAttribute' => ['id_estado' => 'id_estado']],
+            [['municipio'], 'string', 'max' => 33],
         ];
     }
 
