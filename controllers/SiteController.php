@@ -18,30 +18,10 @@ class SiteController extends Controller
 
     public function actionDashboard()
     {
-        $query = Proyectos::find();
-        $query->select('p.titulo, pe.estatus, est.estado,  com.nombre, esp.especialidad, lin.linea_investigacion, p.fecha_inicio, p.fecha_fin');
-        $query->from('proyectos as p');
-        $query->leftJoin('proyectos_estatus as pe', 'p.id_estatus=pe.id_estatus');
-        $query->leftJoin('parroquias as parr', 'p.id_parroquia=parr.id_parroquia');
-        $query->leftJoin('municipios as mun', 'parr.id_municipio=mun.id_municipio');
-        $query->leftJoin('estados as est', 'mun.id_estado=est.id_estado');
-        $query->leftJoin('comunidades as com', 'p.id_comunidad=com.id_comunidad');
-        $query->leftJoin('especialidades as esp', 'p.id_especialidad=esp.id_especialidad');
-        $query->leftJoin('lineas_investigacion as lin', 'p.id_linea_investigacion=lin.id_linea_investigacion');
-
-
-        $pagination = new Pagination([
-            'defaultPageSize' => 5,
-            'totalCount' => $query->count(),
-        ]);
-
-        $proyectos = $query->orderBy('problema')
-        ->offset($pagination->offset)
-        ->limit($pagination->limit)
-        ->all();
+        $mensaje = "Hola";
 
         return $this->render('dashboard',
-            ['proyectos' => $proyectos]
+            ['mensaje' => $mensaje]
         );
     }    
 
