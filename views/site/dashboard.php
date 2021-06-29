@@ -62,17 +62,7 @@ DashboardAsset::register($this);
 							</tr>
 						</tfoot>
 						<tbody>
-							<?php foreach ($proyectos as $proyectos): ?>
-								<tr>
-									<td><?= $proyectos['titulo'] ?></td>
-									<td><?= $proyectos['estatus'] ?></td>
-									<td><?= $proyectos['estado'] ?></td>
-									<td><?= $proyectos['nombre'] ?></td>
-									<td><?= $proyectos['linea_investigacion'] ?></td>
-									<td><?= $proyectos['fecha_inicio'] ?></td>
-									<td><?= $proyectos['fecha_fin'] ?></td>
-								</tr>
-							<?php endforeach; ?>
+							
 						</tbody>
 					</table>
 				</div>
