@@ -35,7 +35,7 @@ DashboardAsset::register($this);
 </div>
 
 <main>
-	<div class="container-fluid">
+<!-- 	<div class="container-fluid">
 		<div class="card mb-4">
 			<div class="card-body">
 				<div class="table-responsive">
@@ -68,7 +68,7 @@ DashboardAsset::register($this);
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </main>
 
 

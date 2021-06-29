@@ -5,38 +5,34 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "public.comunidades".
+ * This is the model class for table "comunidades".
  *
  * @property int $id_comunidad
+ * @property string $rif
  * @property string $nombre
  * @property int $id_tipo_comunidad
- * @property string $direccion
- * @property string $telefono
+ * @property int $telefono_contacto
  * @property string $persona_contacto
+ * @property string $email
  * @property int $id_parroquia
+ * @property string $direccion
+ * @property int $id_user
  * @property int $id_estatus
- * @property int|null $id_usuario
+ *
+ * @property Parroquias $parroquia
+ * @property Proyectos $comunidad
+ * @property TiposComunidades $tipoComunidad
+ * @property Proyectos[] $proyectos
+ * @property ProyectosNecesidades[] $proyectosNecesidades
  */
 class Comunidades extends \yii\db\ActiveRecord
 {
-    
-    //CAMPOS NOSQL//////////////
-    ////////////////////////////
-    public $tipo_comunidad;
-    public $estado;
-    public $municipio;
-    public $parroquia;
-    public $estatus;
-    public $username;
-    public $email;
-    public $password;
-    public $password_confirm;
-    //FIN CAMPOS NOSQL//////////////
-    ////////////////////////////
-
+    /**
+     * {@inheritdoc}
+     */
     public static function tableName()
     {
-        return 'public.comunidades';
+        return 'comunidades';
     }
 
     /**
@@ -45,11 +41,12 @@ class Comunidades extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'id_comunidad', 'id_tipo_comunidad', 'direccion', 'telefono', 'persona_contacto', 'id_parroquia'], 'required'],
-            [['nombre', 'direccion', 'telefono', 'persona_contacto'], 'string'],
-            [['id_tipo_comunidad', 'id_parroquia', 'id_estatus', 'id_usuario'], 'default', 'value' => null],
-            [['id_tipo_comunidad', 'id_parroquia', 'id_estatus', 'id_usuario'], 'integer'],
+            [['rif', 'nombre', 'id_tipo_comunidad', 'telefono_contacto', 'persona_contacto', 'email', 'id_parroquia', 'direccion', 'id_user', 'id_estatus'], 'required'],
+            [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'default', 'value' => null],
+            [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'integer'],
+            [['rif', 'nombre', 'persona_contacto', 'email', 'direccion'], 'string', 'max' => 100],
             [['id_parroquia'], 'exist', 'skipOnError' => true, 'targetClass' => Parroquias::className(), 'targetAttribute' => ['id_parroquia' => 'id_parroquia']],
+            [['id_comunidad'], 'exist', 'skipOnError' => true, 'targetClass' => Proyectos::className(), 'targetAttribute' => ['id_comunidad' => 'id_proyectos']],
             [['id_tipo_comunidad'], 'exist', 'skipOnError' => true, 'targetClass' => TiposComunidades::className(), 'targetAttribute' => ['id_tipo_comunidad' => 'id_tipo_comunidad']],
         ];
     }
@@ -61,21 +58,66 @@ class Comunidades extends \yii\db\ActiveRecord
     {
         return [
             'id_comunidad' => 'Id Comunidad',
-            'nombre' => 'Nombre de la comunidad',
-            'id_tipo_comunidad' => 'Tipo de comunidad',
-            'direccion' => 'Dirección',
-            'telefono' => 'Teléfono',
+            'rif' => 'Rif',
+            'nombre' => 'Nombre',
+            'id_tipo_comunidad' => 'Id Tipo Comunidad',
+            'telefono_contacto' => 'Telefono Contacto',
             'persona_contacto' => 'Persona Contacto',
+            'email' => 'Email',
             'id_parroquia' => 'Id Parroquia',
+            'direccion' => 'Direccion',
+            'id_user' => 'Id User',
             'id_estatus' => 'Id Estatus',
-            'id_usuario' => 'Id Usuario',
-            'estado'     => 'Estado',
-            'municipio'  =>  'Municipio',
-            'parroquia'  =>  'Parroquia',
-            'email' => 'Correo electrónico',
-            'username'  => 'Usuario',
-            'password'  => 'Contraseña',
-            'password_confirm'  => 'Confirme contraseña',
         ];
+    }
+
+    /**
+     * Gets query for [[Parroquia]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getParroquia()
+    {
+        return $this->hasOne(Parroquias::className(), ['id_parroquia' => 'id_parroquia']);
+    }
+
+    /**
+     * Gets query for [[Comunidad]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComunidad()
+    {
+        return $this->hasOne(Proyectos::className(), ['id_proyectos' => 'id_comunidad']);
+    }
+
+    /**
+     * Gets query for [[TipoComunidad]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTipoComunidad()
+    {
+        return $this->hasOne(TiposComunidades::className(), ['id_tipo_comunidad' => 'id_tipo_comunidad']);
+    }
+
+    /**
+     * Gets query for [[Proyectos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProyectos()
+    {
+        return $this->hasMany(Proyectos::className(), ['id_comunidad' => 'id_comunidad']);
+    }
+
+    /**
+     * Gets query for [[ProyectosNecesidades]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProyectosNecesidades()
+    {
+        return $this->hasMany(ProyectosNecesidades::className(), ['id_comunidad' => 'id_comunidad']);
     }
 }
