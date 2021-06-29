@@ -27,6 +27,9 @@ use Yii;
  */
 class Comunidades extends \yii\db\ActiveRecord
 {
+
+    public $id_estado;
+    public $id_municipio;
     /**
      * {@inheritdoc}
      */
@@ -68,6 +71,8 @@ class Comunidades extends \yii\db\ActiveRecord
             'direccion' => 'Dirección',
             'id_user' => 'Id User',
             'id_estatus' => 'Id Estatus',
+            'id_estado' => 'Estado',
+            'id_municipio'  => 'Municipio',
         ];
     }
 
