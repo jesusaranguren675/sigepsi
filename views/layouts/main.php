@@ -169,7 +169,7 @@ else //Si no es invitado se mostrara el contenido siguiente
                 <div class="dropdown">
                     <div class="chip" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                       <?php echo Html::img('@web/imagenes/jesus.jpg', ['width' => '96%', 'height' => '96%']); ?>
-                      Jesús Aranguren <i class="fas fa-chevron-down"></i>
+                     <?= Yii::$app->user->identity->username; ?> <i class="fas fa-chevron-down"></i>
                   </div>
 
                   <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
