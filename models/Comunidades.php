@@ -46,11 +46,17 @@ class Comunidades extends \yii\db\ActiveRecord
         return [
             [['rif', 'nombre', 'id_tipo_comunidad', 'telefono_contacto', 'persona_contacto', 'email', 'id_parroquia', 'direccion', 'id_user', 'id_estatus'], 'required', 'message' => 'El campo es requerido'],
             [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'default', 'value' => null],
-            [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'integer'],
+            [['id_tipo_comunidad', 'telefono_contacto', 'id_parroquia', 'id_user', 'id_estatus'], 'integer', 'message' => 'Solo se aceptan valores numericos'],
             [['rif', 'nombre', 'persona_contacto', 'email', 'direccion'], 'string', 'max' => 100],
             [['id_parroquia'], 'exist', 'skipOnError' => true, 'targetClass' => Parroquias::className(), 'targetAttribute' => ['id_parroquia' => 'id_parroquia']],
             [['id_comunidad'], 'exist', 'skipOnError' => true, 'targetClass' => Proyectos::className(), 'targetAttribute' => ['id_comunidad' => 'id_proyectos']],
             [['id_tipo_comunidad'], 'exist', 'skipOnError' => true, 'targetClass' => TiposComunidades::className(), 'targetAttribute' => ['id_tipo_comunidad' => 'id_tipo_comunidad']],
+            ['email', 'email', 'message' => 'Correo no es una dirección de correo electrónico válida'],
+            ["nombre", "match", "pattern" => "/^[a-zA-Z]+$/", "message" => "Sólo se aceptan letras"],
+            ["rif", "match", "pattern" => "/^[A-Za-z0-9_]+$/", "message" => "Sólo se aceptan valores alfanumericos"],
+            ["persona_contacto", "match", "pattern" => "/^[a-zA-Z-ñ ]+$/", "message" => "Sólo se aceptan letras"],
+            ["telefono_contacto", "integer", 'message' => 'Solo se aceptan valores numericos'],
+            ["direccion", "match", "pattern" => "/^[ A-Za-z0-9_]+$/", "message" => "Sólo se aceptan valores alfanumericos"],
         ];
     }
 
