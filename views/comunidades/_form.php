@@ -18,8 +18,8 @@ $parroquias = \app\models\Parroquias::find()->all();
 <div class="comunidades-form">
 
     <?php $form = ActiveForm::begin([
-        'enableClientValidation' => false,
-        'enableAjaxValidation' => false,
+        //'enableClientValidation' => false,
+        //'enableAjaxValidation' => false,
     ]); ?>
     <div class="row">
         <div class="col-sm-4">
@@ -83,7 +83,7 @@ $parroquias = \app\models\Parroquias::find()->all();
     <!-- <?= $form->field($model, 'id_estatus')->textInput(['value' => 0]) ?> -->
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success', 'id' => 'registrar_comunidad']) ?>
+        <button id="registrar_comunidad" class="btn btn-success"><i class="fas fa-save"></i> Guardar</button>
     </div>
 
     <?php ActiveForm::end(); ?>
@@ -109,11 +109,19 @@ $script = <<< JS
             
             var url = "sigepsi/web/index.php?r=comunidades/create";
 
-             $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+            //Verificar validacion
+            //---------------------
+            
+            if(rif == "" || nombre == "" || id_tipo_comunidad == "" || telefono_contacto == "" || persona_contacto == "" || email == "" || id_parroquia == "" || direccion == "")
+            {
+                Swal.fire(
+                   'Completa los campos requeridos',
+                   '',
+                   'error'
+                )
 
-             //Verificar validacion
-             //---------------------
-      
+                return false;
+            }
         
          $.ajax({
                 url: url,
