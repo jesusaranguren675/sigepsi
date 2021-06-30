@@ -10406,14 +10406,14 @@ body {
 }
 
 .title-dashboard {
-    padding-top: 15px;
+    padding-top: 5px;
     /* padding-bottom: 10px; */
     width: 50%;
     text-align: center;
     color: rgb(0 135 221);
     border-bottom: solid 2px rgb(17 108 167);
     margin: auto;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .help-block-error {
