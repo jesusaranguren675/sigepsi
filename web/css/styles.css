@@ -10405,7 +10405,16 @@ body {
   background-color: #e9ecef;
 }
 
-.title-dashboard {padding-top: 15px;text-align: center;color: rgb(0 135 221);}
+.title-dashboard {
+    padding-top: 15px;
+    /* padding-bottom: 10px; */
+    width: 50%;
+    text-align: center;
+    color: rgb(0 135 221);
+    border-bottom: solid 2px rgb(17 108 167);
+    margin: auto;
+    margin-bottom: 25px;
+}
 
 .help-block-error {
   color: red !important;
