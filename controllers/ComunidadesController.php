@@ -66,9 +66,52 @@ class ComunidadesController extends Controller
     {
         $model = new Comunidades();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_comunidad]);
+        if (Yii::$app->request->isAjax) 
+        {
+
+            $rif = $_POST['rif'];
+            $nombre = $_POST['nombre'];
+            $id_tipo_comunidad = $_POST['id_tipo_comunidad'];
+            $telefono_contacto = $_POST['telefono_contacto'];
+            $persona_contacto = $_POST['persona_contacto'];
+            $email = $_POST['email'];
+            $id_parroquia = $_POST['id_parroquia'];
+            $direccion = $_POST['direccion'];
+            $id_user = Yii::$app->user->identity->id;
+            $id_estatus = 1;
+
+            $comunidad = Yii::$app->db->createCommand("INSERT INTO public.comunidades(
+            rif, nombre, id_tipo_comunidad, 
+            telefono_contacto, persona_contacto,
+            email, id_parroquia, direccion, id_user, id_estatus)
+            VALUES ('$rif', '$nombre', $id_tipo_comunidad, 
+            '$telefono_contacto', '$persona_contacto', '$email',
+            $id_parroquia, '$direccion', $id_user, $id_estatus) RETURNING true")->queryAll();
+
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if($comunidad)
+            {
+                return [
+                    'data' => [
+                        'success' => true,
+                        'message' => 'Comunidad Registrada Exitosamente',
+                    ],
+                    'code' => 1, // Some semantic codes that you know them for yourself
+                ];
+            }
+            else
+            {
+                return [
+                    'data' => [
+                        'success' => false,
+                        'message' => 'Ocurrió un error al registrar la comunidad',
+                ],
+                    'code' => 0, // Some semantic codes that you know them for yourself
+                ];
+            }
         }
+
 
         return $this->render('create', [
             'model' => $model,
