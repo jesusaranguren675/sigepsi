@@ -36,11 +36,22 @@ class ComunidadesController extends Controller
     public function actionIndex()
     {
         $searchModel = new ComunidadesSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $comunidades = 
+        Yii::$app->db->createCommand("
+        SELECT comunidad.id_comunidad, comunidad.nombre, comunidad.rif,
+               tipo_comunidad.tipo_comunidad, comunidad.telefono_contacto
+        FROM public.comunidades 
+        AS comunidad
+        JOIN tipos_comunidades 
+        AS tipo_comunidad  
+        ON tipo_comunidad.id_tipo_comunidad=comunidad.id_tipo_comunidad")->queryAll();
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'searchModel'   => $searchModel,
+            'comunidades'   => $comunidades,
+            //'dataProvider' => $dataProvider,
         ]);
     }
 
