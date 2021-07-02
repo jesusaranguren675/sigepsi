@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ComunidadesSearch */
@@ -14,28 +15,87 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="cintillo">
     <?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
 </div>
+
+<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?= Url::toRoute('comunidades/index')?>">Comunidades / </a></li>
+    </ol>
+</nav>
+
 <h3 class="title-dashboard"><?= Html::encode($this->title) ?></h3>
 
 
 <div class="comunidades-index">
 
     <p>
-        <?= Html::a('Crear comunidad', ['create'], ['class' => 'btn btn-success']) ?>
+        <a href="<?= Url::toRoute('comunidades/create')?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Crear</a>
+        <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+        <i class="fas fa-search"></i> Buscar
+        </button>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="collapse" id="collapseSearch">
+        <div class="alert alert-warning" role="alert">
+            Rellena los siguientes campos para crear un <strong>filtro de datos.</strong>
+        </div>
+        <div class="card card-body">
+            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+        </div><br>
+    </div>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <main>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id Comunidad</th>
+                        <th>Nombre</th>
+                        <th>RIF</th>
+                        <th>Tipo de Comunidad</th>
+                        <th>Teléfono de Contacto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id Comunidad</th>
+                        <th>Nombre</th>
+                        <th>RIF</th>
+                        <th>Tipo de Comunidad</th>
+                        <th>Teléfono de Contacto</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <?php foreach ($comunidades as $comunidades): ?>
+                        <tr>
+                            <td><?= $comunidades['id_comunidad'] ?></td>
+                            <td><?= $comunidades['nombre'] ?></td>
+                            <td><?= $comunidades['rif'] ?></td>
+                            <td> <?= $comunidades['tipo_comunidad'] ?></td>
+                            <td><?= $comunidades['telefono_contacto'] ?></td>
+                            <td>
+                                <a href="<?= Url::to(['comunidades/view', 'id' => $comunidades['id_comunidad']]); ?>" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                <a href="<?= Url::to(['comunidades/update', 'id' => $comunidades['id_comunidad']]); ?>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>   
+                </tbody>
+            </table>
+        </div>
+    </main>
 
-            'id_comunidad',
-            'rif',
-            'nombre',
-            'id_tipo_comunidad',
-            'telefono_contacto',
+
+     <?php // GridView::widget([
+        //'dataProvider' => $dataProvider,
+        //'filterModel' => $searchModel,
+        //'columns' => [
+            //['class' => 'yii\grid\SerialColumn'],
+
+            //'id_comunidad',
+            //'rif',
+            //'nombre',
+            //'tipo_comunidad',
+            //'telefono_contacto',
             //'persona_contacto',
             //'email:email',
             //'id_parroquia',
@@ -43,9 +103,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id_user',
             //'id_estatus',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            //['class' => 'yii\grid\ActionColumn'],
+        //],
+    //]); ?>
 
    
 
