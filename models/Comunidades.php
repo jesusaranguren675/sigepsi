@@ -30,6 +30,7 @@ class Comunidades extends \yii\db\ActiveRecord
 
     public $id_estado;
     public $id_municipio;
+    public $tipo_comunidad;
     /**
      * {@inheritdoc}
      */
