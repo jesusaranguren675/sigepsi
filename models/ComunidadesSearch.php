@@ -40,9 +40,12 @@ class ComunidadesSearch extends Comunidades
      */
     public function search($params)
     {
-        $query = Comunidades::find();
 
-        // add conditions that should always apply here
+        $query = Comunidades::find();
+        $query->select('comunidad.id_comunidad, comunidad.nombre, comunidad.rif, tipo_comunidad.tipo_comunidad, comunidad.telefono_contacto');
+        $query->from('comunidades as comunidad');
+        $query->leftJoin('tipos_comunidades as tipo_comunidad', 'tipo_comunidad.id_tipo_comunidad=comunidad.id_tipo_comunidad');
+
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
