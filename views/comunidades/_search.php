@@ -15,19 +15,35 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id_comunidad') ?>
+    <?php // $form->field($model, 'id_comunidad') ?>
 
-    <?= $form->field($model, 'rif') ?>
+    <div class="row">
+        <div class="col-sm-4">
+            <?= $form->field($model, 'rif') ?>
+        </div>
 
-    <?= $form->field($model, 'nombre') ?>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'nombre') ?>
+        </div>
 
-    <?= $form->field($model, 'id_tipo_comunidad') ?>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'id_tipo_comunidad') ?>
+        </div>
 
-    <?= $form->field($model, 'telefono_contacto') ?>
+        <div class="col-sm-4">
+            <?php echo $form->field($model, 'email') ?>
+        </div>
 
-    <?php // echo $form->field($model, 'persona_contacto') ?>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'telefono_contacto') ?>
+        </div>
 
-    <?php // echo $form->field($model, 'email') ?>
+        <div class="col-sm-4">
+            <?php echo $form->field($model, 'persona_contacto') ?>
+        </div>
+    </div>
+    
+    
 
     <?php // echo $form->field($model, 'id_parroquia') ?>
 
@@ -38,8 +54,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'id_estatus') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <button class="btn btn-success"><i class="fas fa-search"></i> Buscar</button>
+        <?= Html::resetButton('Reiniciar', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
