@@ -33,6 +33,7 @@ class InicioAsset extends AssetBundle
         'js/jquery.dataTables.min.js',
         'js/dataTables.bootstrap4.min.js',
         'assets/demo/datatables-demo.js',
+        'js/inicializacionDataTable.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
