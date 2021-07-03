@@ -11,11 +11,13 @@ $this->params['breadcrumbs'][] = ['label' => 'Comunidades', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="comunidades-create">
+
 	<div class="cintillo">
 		<?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
 	</div>
+
 	<nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
-		<ol class="breadcrumb">
+		<ol class="breadcrumb alert-warning">
 			<li class="breadcrumb-item"><a href="<?= Url::toRoute('comunidades/index')?>">Comunidades</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Registrar Comunidades</li>
 		</ol>
