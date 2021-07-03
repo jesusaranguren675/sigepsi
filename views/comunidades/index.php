@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <a href="<?= Url::toRoute('comunidades/create')?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Crear</a>
-        <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+        <!-- <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
         <i class="fas fa-search"></i> Buscar
-        </button>
+        </button> -->
 
         <button class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> pdf</button>
         <button class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> excel</button>
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             Rellena los siguientes campos para crear un <strong>filtro de datos.</strong>
         </div>
         <div class="card card-body">
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+            <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
         </div><br>
     </div>
 
@@ -60,6 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>RIF</th>
                         <th>Tipo de Comunidad</th>
                         <th>Teléfono de Contacto</th>
+                        <th>Estatus</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -80,6 +81,22 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $comunidades['rif'] ?></td>
                             <td> <?= $comunidades['tipo_comunidad'] ?></td>
                             <td><?= $comunidades['telefono_contacto'] ?></td>
+                            <td>
+                                <?php  
+                                    if($comunidades['id_estatus'] == 1)
+                                    {
+                                        ?>
+                                        <button class="btn btn-success btn-sm">Activa</button>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                        ?>
+                                        <button class="btn btn-success btn-sm">Inactiva</button>
+                                        <?php
+                                    }
+                                ?>
+                            </td>
                             <td>
                                 <a href="<?= Url::to(['comunidades/view', 'id' => $comunidades['id_comunidad']]); ?>" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                 <a href="<?= Url::to(['comunidades/update', 'id' => $comunidades['id_comunidad']]); ?>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
