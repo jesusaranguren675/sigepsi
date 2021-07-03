@@ -12,17 +12,21 @@ $this->title = 'COMUNIDADES';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<!-- Cintillo -->
 <div class="cintillo">
     <?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
 </div>
+<!-- Fin Cintillo -->
 
+<!-- Migas de pan -->
 <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb alert alert-warning">
         <li class="breadcrumb-item"><a href="<?= Url::toRoute('comunidades/index')?>">Comunidades / </a></li>
     </ol>
 </nav>
+<!-- Fin Migas de Pan -->
 
-<h3 class="title-dashboard"><?= Html::encode($this->title) ?></h3>
+<h4 class="title-dashboard"><?= Html::encode($this->title) ?></h4>
 
 
 <div class="comunidades-index">
@@ -32,10 +36,13 @@ $this->params['breadcrumbs'][] = $this->title;
         <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
         <i class="fas fa-search"></i> Buscar
         </button>
+
+        <button class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> pdf</button>
+        <button class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> excel</button>
     </p>
 
     <div class="collapse" id="collapseSearch">
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-danger" role="alert">
             Rellena los siguientes campos para crear un <strong>filtro de datos.</strong>
         </div>
         <div class="card card-body">
