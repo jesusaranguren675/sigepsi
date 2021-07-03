@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tfoot>
+<!--                 <tfoot>
                     <tr>
                         <th>Id Comunidad</th>
                         <th>Nombre</th>
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>Tipo de Comunidad</th>
                         <th>Teléfono de Contacto</th>
                     </tr>
-                </tfoot>
+                </tfoot> -->
                 <tbody>
                     <?php foreach ($comunidades as $comunidades): ?>
                         <tr>
