@@ -16,3 +16,8 @@
         //document.getElementById("title-menu").style.color = '#333';
     });
 })(jQuery);
+
+
+$(document).ready( function () {
+    $('#dataTable').DataTable();
+} );
