@@ -41,7 +41,8 @@ class ComunidadesController extends Controller
         $comunidades = 
         Yii::$app->db->createCommand("
         SELECT comunidad.id_comunidad, comunidad.nombre, comunidad.rif,
-               tipo_comunidad.tipo_comunidad, comunidad.telefono_contacto
+               tipo_comunidad.tipo_comunidad, comunidad.telefono_contacto,
+               comunidad.id_estatus
         FROM public.comunidades 
         AS comunidad
         JOIN tipos_comunidades 
