@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h6><!-- <?= Html::encode($this->title) ?>--></h6>
 
     <p>
-        <a  href="<?= Url::toRoute(['comunidades/update', 'id' => $model->id_comunidad]) ?>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modificar</a>
         <?php // Html::a('Delete', ['delete', 'id' => $model->id_comunidad], [
             //'class' => 'btn btn-danger',
             //'data' => [
@@ -44,21 +43,34 @@ $this->params['breadcrumbs'][] = $this->title;
        // ]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id_comunidad',
-            'rif',
-            'nombre',
-            'id_tipo_comunidad',
-            'telefono_contacto',
-            'persona_contacto',
-            'email:email',
-            'id_parroquia',
-            'direccion',
-            'id_user',
-            'id_estatus',
-        ],
-    ]) ?>
+    <ul class="list-group list-group-flush">
+        <?php foreach ($comunidades as $comunidades): ?>
+            <li class="list-group-item active"><strong class="">Nombre:</strong> <?= $comunidades['nombre'] ?></li>
+            <li class="list-group-item"><strong class="">Id Comunidad:</strong> <?= $comunidades['id_comunidad'] ?></li>
+            <li class="list-group-item"><strong class="">RIF:</strong> <?= $comunidades['rif'] ?></li>
+            <li class="list-group-item"><strong class="">Tipo de comunidad:</strong> <?= $comunidades['tipo_comunidad'] ?></li>
+            <li class="list-group-item"><strong class="">Teléfono de Contacto:</strong> <?= $comunidades['telefono_contacto'] ?></li>
+            <li class="list-group-item"><strong class="">Persona Contacto:</strong> <?= $comunidades['persona_contacto'] ?></li>
+            <li class="list-group-item"><strong class="">Correo:</strong> <?= $comunidades['email'] ?></li>
+            <li class="list-group-item"><strong class="">Dirección:</strong> <?= $comunidades['direccion'] ?></li>
+        <?php endforeach; ?>
+    </ul>
+
+    <?php //DetailView::widget([
+        //'model' => $model,
+        //'attributes' => [
+            //'id_comunidad',
+            //'rif',
+            //'nombre',
+            //'id_tipo_comunidad',
+            //'telefono_contacto',
+            //'persona_contacto',
+            //'email:email',
+            //'id_parroquia',
+            //'direccion',
+            //'id_user',
+            //'id_estatus',
+        //],
+    //]) ?>
 
 </div>
