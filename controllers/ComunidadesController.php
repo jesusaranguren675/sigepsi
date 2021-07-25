@@ -64,8 +64,28 @@ class ComunidadesController extends Controller
      */
     public function actionView($id)
     {
+        $comunidades = 
+        Yii::$app->db->createCommand("
+        SELECT comunidad.id_comunidad, comunidad.nombre, comunidad.rif,
+               tipo_comunidad.tipo_comunidad, comunidad.telefono_contacto,
+               comunidad.id_estatus, parroquia.parroquia, usuario.username,
+               comunidad.persona_contacto, comunidad.email, comunidad.direccion
+        FROM public.comunidades 
+        AS comunidad
+        JOIN tipos_comunidades 
+        AS tipo_comunidad  
+        ON tipo_comunidad.id_tipo_comunidad=comunidad.id_tipo_comunidad
+        JOIN parroquias
+        AS parroquia
+        ON comunidad.id_parroquia=parroquia.id_parroquia
+        JOIN public.user
+        AS usuario
+        ON usuario.id=comunidad.id_user
+        WHERE comunidad.id_comunidad=$id")->queryAll();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model'         => $this->findModel($id),
+            'comunidades'   => $comunidades,
         ]);
     }
 
