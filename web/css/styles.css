@@ -10410,6 +10410,7 @@ body {
 }
 
 .title-dashboard {
+    display: none; 
     padding-top: 5px;
     /* padding-bottom: 10px; */
     width: 50%;
