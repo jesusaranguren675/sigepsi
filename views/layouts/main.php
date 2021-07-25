@@ -111,10 +111,10 @@ else //Si no es invitado se mostrara el contenido siguiente
                     </div>
                 </nav>
             </div>
-            <div class="sb-sidenav-menu-heading">Estudiantes</div>
-            <a class="nav-link" href="<?= Url::toRoute('charts');?>">
-                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                Charts
+            <div class="sb-sidenav-menu-heading">Comunidades</div>
+            <a class="nav-link" href="<?= Url::toRoute('comunidades/index');?>">
+                <div class="sb-nav-link-icon"><i class="fas fa-hotel"></i></div>
+                Comunidades
             </a>
             <a class="nav-link" href="tables.html">
                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
