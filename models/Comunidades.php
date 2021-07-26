@@ -77,7 +77,7 @@ class Comunidades extends \yii\db\ActiveRecord
             'id_parroquia' => 'Parroquia',
             'direccion' => 'Dirección',
             'id_user' => 'Id User',
-            'id_estatus' => 'Id Estatus',
+            'id_estatus' => 'Estatus',
             'id_estado' => 'Estado',
             'id_municipio'  => 'Municipio',
         ];
