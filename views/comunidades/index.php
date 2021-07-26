@@ -64,15 +64,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <th>Acciones</th>
                     </tr>
                 </thead>
-<!--                 <tfoot>
-                    <tr>
-                        <th>Id Comunidad</th>
-                        <th>Nombre</th>
-                        <th>RIF</th>
-                        <th>Tipo de Comunidad</th>
-                        <th>Teléfono de Contacto</th>
-                    </tr>
-                </tfoot> -->
                 <tbody>
                     <?php foreach ($comunidades as $comunidades): ?>
                         <tr>
@@ -92,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     else
                                     {
                                         ?>
-                                        <button class="btn btn-success btn-sm">Inactiva</button>
+                                        <button class="btn btn-danger btn-sm">Inactiva</button>
                                         <?php
                                     }
                                 ?>
@@ -130,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\ActionColumn'],
         //],
     //]); ?>
+
 
    
 
