@@ -30,6 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </nav>
     <!-- Fin Migas de Pan -->
 
+    <a class="btn btn-success btn-sm" href="<?= Url::toRoute(['comunidades/update', 'id' => $model->id_comunidad]); ?>">
+        Modificar <i class="fas fa-edit"></i>
+    </a>
+
     <h3 class="title-dashboard">Listado de Comunidades</h3>
     <h6><!-- <?= Html::encode($this->title) ?>--></h6>
 
@@ -43,18 +47,41 @@ $this->params['breadcrumbs'][] = $this->title;
        // ]) ?>
     </p>
 
-    <ul class="list-group list-group-flush">
-        <?php foreach ($comunidades as $comunidades): ?>
-            <li class="list-group-item active"><strong class="">Nombre:</strong> <?= $comunidades['nombre'] ?></li>
-            <li class="list-group-item"><strong class="">Id Comunidad:</strong> <?= $comunidades['id_comunidad'] ?></li>
-            <li class="list-group-item"><strong class="">RIF:</strong> <?= $comunidades['rif'] ?></li>
-            <li class="list-group-item"><strong class="">Tipo de comunidad:</strong> <?= $comunidades['tipo_comunidad'] ?></li>
-            <li class="list-group-item"><strong class="">Teléfono de Contacto:</strong> <?= $comunidades['telefono_contacto'] ?></li>
-            <li class="list-group-item"><strong class="">Persona Contacto:</strong> <?= $comunidades['persona_contacto'] ?></li>
-            <li class="list-group-item"><strong class="">Correo:</strong> <?= $comunidades['email'] ?></li>
-            <li class="list-group-item"><strong class="">Dirección:</strong> <?= $comunidades['direccion'] ?></li>
-        <?php endforeach; ?>
-    </ul>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-group list-group-flush">
+                <?php foreach ($comunidades as $comunidades): ?>
+                    <li class="list-group-item active"><strong class="">Nombre:</strong> <?= $comunidades['nombre'] ?></li>
+                    <li class="list-group-item"><strong class="">Id Comunidad:</strong> <?= $comunidades['id_comunidad'] ?></li>
+                    <li class="list-group-item"><strong class="">RIF:</strong> <?= $comunidades['rif'] ?></li>
+                    <li class="list-group-item"><strong class="">Tipo de comunidad:</strong> <?= $comunidades['tipo_comunidad'] ?></li>
+                    <li class="list-group-item"><strong class="">Teléfono de Contacto:</strong> <?= $comunidades['telefono_contacto'] ?></li>
+                    <li class="list-group-item"><strong class="">Persona Contacto:</strong> <?= $comunidades['persona_contacto'] ?></li>
+                    <li class="list-group-item"><strong class="">Correo:</strong> <?= $comunidades['email'] ?></li>
+                    <li class="list-group-item"><strong class="">Dirección:</strong> <?= $comunidades['direccion'] ?></li>
+                    <li class="list-group-item">
+                        <strong class="">Dirección:</strong>
+                        <?php
+
+                        if($comunidades['id_estatus'] == 1)
+                        {
+                            ?>
+                            <button class="btn btn-success btn-sm">Activa</button>
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                            <button class="btn btn-danger btn-sm">Inactiva</button>
+                            <?php
+                        }
+
+                        ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
 
     <?php //DetailView::widget([
         //'model' => $model,
