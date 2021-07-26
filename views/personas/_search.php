@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'telefono_local') ?>
 
-    <?php // echo $form->field($model, 'id_usuario') ?>
+    <?php // echo $form->field($model, 'id_user') ?>
 
     <?php // echo $form->field($model, 'id_estatus') ?>
 

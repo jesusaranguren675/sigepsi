@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "public.personas".
+ * This is the model class for table "personas".
  *
  * @property int $id_persona
  * @property int $cedula
@@ -14,49 +14,38 @@ use Yii;
  * @property string $primer_apellido
  * @property string|null $segundo_apellido
  * @property string $fecha_nac
- * @property string $telefono_celular
- * @property string $telefono_local
- * @property int $id_usuario
- * @property int|null $id_estatus
+ * @property string|null $telefono_celular
+ * @property string|null $telefono_local
+ * @property int $id_user
+ * @property int $id_estatus
+ *
+ * @property Estudiantes[] $estudiantes
+ * @property ProyectosRetiros[] $proyectosRetiros
  */
 class Personas extends \yii\db\ActiveRecord
 {
-
-    public $id;
-    public $id_estudiante;
-    public $nombres;
-    public $apellidos;
-    public $carrera;
-    public $username;
-    public $email;
-    public $password;
-    public $password_confirm;
-    public $especialidad; 
-    public $id_especialidad;
-    public $item_name;
-
-
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'public.personas';
+        return 'personas';
     }
 
     /**
      * {@inheritdoc}
      */
-     public function rules()
-     {
-         return [
-             [['id_persona', 'cedula', 'primer_nombre', 'primer_apellido', 'fecha_nac', 'telefono_celular', 'telefono_local', 'id_usuario'], 'required'],
-             [['cedula', 'id_usuario', 'id_estatus'], 'default', 'value' => null],
-             [['cedula', 'id_usuario', 'id_estatus'], 'integer'],
-             [['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'telefono_celular', 'telefono_local'], 'string'],
-             [['fecha_nac'], 'safe'],
-         ];
-     }
+    public function rules()
+    {
+        return [
+            [['cedula', 'primer_nombre', 'primer_apellido', 'fecha_nac', 'id_user', 'id_estatus'], 'required'],
+            [['cedula', 'id_user', 'id_estatus'], 'default', 'value' => null],
+            [['cedula', 'id_user', 'id_estatus'], 'integer'],
+            [['fecha_nac'], 'safe'],
+            [['telefono_celular'], 'string'],
+            [['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'telefono_local'], 'string', 'max' => 100],
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -70,15 +59,31 @@ class Personas extends \yii\db\ActiveRecord
             'segundo_nombre' => 'Segundo Nombre',
             'primer_apellido' => 'Primer Apellido',
             'segundo_apellido' => 'Segundo Apellido',
-            'fecha_nac' => 'Fecha de Nacimiento',
-            'telefono_celular' => 'Teléfono Celular',
-            'telefono_local' => 'Teléfono Local',
-            'username' => 'Usuario',
-            'email'     => 'Correo Electrónico',
-            'password'  => 'Contraseña',
+            'fecha_nac' => 'Fecha Nac',
+            'telefono_celular' => 'Telefono Celular',
+            'telefono_local' => 'Telefono Local',
+            'id_user' => 'Id User',
             'id_estatus' => 'Id Estatus',
-            'password_confirm'  => 'Confirmar Contraseña',
-            'id_especialidad'      => 'Especialidad',
         ];
+    }
+
+    /**
+     * Gets query for [[Estudiantes]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstudiantes()
+    {
+        return $this->hasMany(Estudiantes::className(), ['id_persona' => 'id_persona']);
+    }
+
+    /**
+     * Gets query for [[ProyectosRetiros]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProyectosRetiros()
+    {
+        return $this->hasMany(ProyectosRetiros::className(), ['id_persona' => 'id_persona']);
     }
 }

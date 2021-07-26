@@ -17,7 +17,7 @@ class PersonasSearch extends Personas
     public function rules()
     {
         return [
-            [['id_persona', 'cedula', 'id_usuario', 'id_estatus'], 'integer'],
+            [['id_persona', 'cedula', 'id_user', 'id_estatus'], 'integer'],
             [['primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'fecha_nac', 'telefono_celular', 'telefono_local'], 'safe'],
         ];
     }
@@ -61,7 +61,7 @@ class PersonasSearch extends Personas
             'id_persona' => $this->id_persona,
             'cedula' => $this->cedula,
             'fecha_nac' => $this->fecha_nac,
-            'id_usuario' => $this->id_usuario,
+            'id_user' => $this->id_user,
             'id_estatus' => $this->id_estatus,
         ]);
 
