@@ -33,8 +33,8 @@ class AppAsset extends AssetBundle
         'js/scripts.js', //Contiene el script del menu del sistema
         //'js/Chart.min.js', //Contiene la libreria de graficas Chart.js
         //'js/chartprincipal.js',
-        'js/jquery.dataTables.min.js',  // Contiene script de la libreria DataTable
-        'js/dataTables.bootstrap4.min.js', // Contiene script de bootstrap js
+        //'js/jquery.dataTables.min.js',  // Contiene script de la libreria DataTable
+        //'js/dataTables.bootstrap4.min.js', // Contiene script de bootstrap js
         //'assets/demo/datatables-demo.js', // Contiene ejemplos de DataTable
     ];
     public $depends = [
