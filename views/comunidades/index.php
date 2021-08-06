@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
+use app\assets\DatatableAsset;
+DatatableAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ComunidadesSearch */
