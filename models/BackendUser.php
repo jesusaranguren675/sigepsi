@@ -24,6 +24,7 @@ class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     public $updated_at;
     public $password_reset_token;
     public $verification_token;
+    public $id_comunidad;
 
     public static function tableName()
     {
@@ -59,7 +60,7 @@ class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
              'password_hash' => 'Contraseña',
              'password_reset_token' => 'Password Reset Token',
              'email' => 'Correo Electrónico',
-             'status' => 'Status',
+             'status' => 'Estatus',
              'created_at' => 'Created At',
              'updated_at' => 'Updated At',
              'verification_token' => 'Verification Token',

@@ -36,11 +36,19 @@ class BackenduserController extends Controller
     public function actionIndex()
     {
         $searchModel = new BackenduserSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $usuarios = 
+        Yii::$app->db->createCommand("
+        SELECT id, username, email, status
+        FROM public.user 
+        AS usuario")->queryAll();
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'usuarios'    => $usuarios,
+            //'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -52,8 +60,17 @@ class BackenduserController extends Controller
      */
     public function actionView($id)
     {
+
+        $usuarios = 
+        Yii::$app->db->createCommand("
+        SELECT id, username, email, status
+        FROM public.user 
+        AS usuario
+        WHERE id=$id")->queryAll();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'usuarios' => $usuarios,
         ]);
     }
 
@@ -66,8 +83,46 @@ class BackenduserController extends Controller
     {
         $model = new BackendUser();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        //if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           // return $this->redirect(['view', 'id' => $model->id]);
+        //}
+
+        if (Yii::$app->request->isAjax) 
+        {
+
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password_hash = $_POST['password_hash'];
+            $status = $_POST['status'];
+
+            $usuario = Yii::$app->db->createCommand("INSERT INTO public.comunidades(
+            username, email, password_hash, 
+            status)
+            VALUES ('$username', '$email', $password_hash, 
+            '$status')")->queryAll();
+
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if($usuario)
+            {
+                return [
+                    'data' => [
+                        'success' => true,
+                        'message' => 'Usuario Registrado Exitosamente',
+                    ],
+                    'code' => 1, // Some semantic codes that you know them for yourself
+                ];
+            }
+            else
+            {
+                return [
+                    'data' => [
+                        'success' => false,
+                        'message' => 'Ocurrió un error al registrar el usuario',
+                ],
+                    'code' => 0, // Some semantic codes that you know them for yourself
+                ];
+            }
         }
 
         return $this->render('create', [
