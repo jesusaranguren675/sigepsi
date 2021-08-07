@@ -5,6 +5,7 @@ use Codeception\Codecept;
 use Codeception\Configuration;
 use Codeception\Lib\Di;
 use Codeception\Lib\ModuleContainer;
+use Codeception\Util\ReflectionHelper;
 use Codeception\Util\Template;
 
 class Actions
@@ -38,8 +39,8 @@ EOF;
      {{doc}}
      * @see \{{module}}::{{method}}()
      */
-    public function {{action}}({{params}}) {
-        return \$this->getScenario()->runStep(new \Codeception\Step\{{step}}('{{method}}', func_get_args()));
+    public function {{action}}({{params}}){{return_type}} {
+        {{return}}\$this->getScenario()->runStep(new \Codeception\Step\{{step}}('{{method}}', func_get_args()));
     }
 EOF;
 
@@ -109,10 +110,13 @@ EOF;
         if (!$doc) {
             $doc = "*";
         }
+        $returnType = $this->createReturnTypeHint($refMethod);
 
         $methodTemplate = (new Template($this->methodTemplate))
             ->place('module', $module)
             ->place('method', $refMethod->name)
+            ->place('return_type', $returnType)
+            ->place('return', $returnType === ': void' ? '' : 'return ')
             ->place('params', $params);
 
         if (0 === strpos($refMethod->name, 'see')) {
@@ -151,11 +155,18 @@ EOF;
     {
         $params = [];
         foreach ($refMethod->getParameters() as $param) {
+            $type = '';
+            if (PHP_VERSION_ID >= 70000) {
+                $reflectionType = $param->getType();
+                if ($reflectionType !== null) {
+                    $type = $this->stringifyType($reflectionType) . ' ';
+                }
+            }
             if ($param->isOptional()) {
-                $params[] = '$' . $param->name . ' = null';
+                $params[] = $type . '$' . $param->name . ' = ' . ReflectionHelper::getDefaultValue($param);
             } else {
-                $params[] = '$' . $param->name;
-            };
+                $params[] = $type . '$' . $param->name;
+            }
         }
         return implode(', ', $params);
     }
@@ -204,5 +215,44 @@ EOF;
     public function getNumMethods()
     {
         return $this->numMethods;
+    }
+
+    private function createReturnTypeHint(\ReflectionMethod $refMethod)
+    {
+        if (PHP_VERSION_ID < 70000) {
+            return '';
+        }
+
+        $returnType = $refMethod->getReturnType();
+
+        if ($returnType === null) {
+            return '';
+        }
+
+        return ': ' . $this->stringifyType($returnType);
+    }
+
+    /**
+     * @param \ReflectionType $type
+     * @return string
+     */
+    private function stringifyType(\ReflectionType $type)
+    {
+        if ($type instanceof \ReflectionUnionType) {
+            $types = $type->getTypes();
+            return implode('|', $types);
+        }
+
+        if (PHP_VERSION_ID < 70100) {
+            $returnTypeString = (string)$type;
+        } else {
+            $returnTypeString = $type->getName();
+        }
+        return sprintf(
+            '%s%s%s',
+            (PHP_VERSION_ID >= 70100 && $type->allowsNull()) ? '?' : '',
+            $type->isBuiltin() ? '' : '\\',
+            $returnTypeString
+        );
     }
 }

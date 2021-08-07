@@ -156,7 +156,7 @@ body {
   border-radius: 50%;
 }
 
-.profile {display: flex;flex-direction: column;align-items: center;/* border-top: solid 1px #ccc; */margin-top: 0px;padding-top: 5px;/* border-bottom: solid 1px #ccc; */padding-bottom: 10px;}
+.profile {display: flex;flex-direction: column;align-items: center;/* border-top: solid 1px #ccc; */margin-top: 0px;padding-top: 5px;/* border-bottom: solid 1px #ccc; */padding-bottom: 10px;background: rgb(15,42,75,.8);}
 
 .img-usuario {
   /* background: #fff; */
@@ -10252,7 +10252,9 @@ body {
   width: 225px;
   height: 100vh;
   z-index: 1038;
-  background: #0087dd;
+  background-image: url(https://fastly.4sqi.net/img/general/600x600/41676271_RUIMCStkSTDlWkVap34jz6-tN_arNgGmAfxnUn1SCfg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
   /* padding-top: 56px; */
@@ -10352,8 +10354,8 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #0087dd;
   color: rgba(255, 255, 255, 0.5);
+  background: rgb(15,42,75,.8);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: #fff;

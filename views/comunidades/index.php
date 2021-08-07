@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <i class="fas fa-search"></i> Buscar
         </button> -->
 
-        <button class="btn btn-danger btn-sm"><i class="fas fa-file-pdf"></i> pdf</button>
+        <a class="btn btn-danger btn-sm" href="<?= Url::toRoute(['comunidades/pdf']); ?>"><i class="fas fa-file-pdf"></i> pdf</a>
         <button class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> excel</button>
     </p>
 
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td><?= $comunidades['nombre'] ?></td>
                             <td><?= $comunidades['rif'] ?></td>
                             <td> <?= $comunidades['tipo_comunidad'] ?></td>
-                            <td><?= $comunidades['telefono_contacto'] ?></td>
+                            <td> <a href="tel:+58<?= $comunidades['telefono_contacto'] ?>"><i class="fas fa-phone"></i> <?= $comunidades['telefono_contacto'] ?></a></td>
                             <td>
                                 <?php  
                                     if($comunidades['id_estatus'] == 1)
