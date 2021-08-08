@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <i class="fas fa-search"></i> Buscar
         </button> -->
 
-        <a class="btn btn-danger btn-sm" href="<?= Url::toRoute(['comunidades/pdf']); ?>"><i class="fas fa-file-pdf"></i> pdf</a>
-        <button class="btn btn-success btn-sm"><i class="fas fa-file-excel"></i> excel</button>
+        <a class="btn btn-danger btn-sm" href="<?= Url::toRoute(['comunidades/pdf']); ?>" target="_blank"><i class="fas fa-file-pdf"></i> pdf</a>
+        <button class="btn btn-success btn-sm" href="<?= Url::toRoute(['comunidades/excel']); ?>"><i class="fas fa-file-excel"></i> excel</button>
     </p>
 
     <div class="collapse" id="collapseSearch">

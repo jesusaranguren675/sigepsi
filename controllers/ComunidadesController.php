@@ -42,7 +42,7 @@ class ComunidadesController extends Controller
     public function actionIndex()
     {
         $searchModel = new ComunidadesSearch();
-        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $comunidades = 
         Yii::$app->db->createCommand("
@@ -58,7 +58,7 @@ class ComunidadesController extends Controller
         return $this->render('index', [
             'searchModel'   => $searchModel,
             'comunidades'   => $comunidades,
-            //'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -378,6 +378,50 @@ class ComunidadesController extends Controller
         $mpdf->Output();
         exit;
         //return $this->renderPartial('mpdf');
+    }
+
+    public function actionExcel($file_name = 'file.xls')
+    {
+         $fields = ["item_code", "description", "cost"];
+ 
+         $data = [
+               $fields,
+               ["prod_Mazda", "Mazda", "26000"],
+               ["prod_Toyota", "Toyota", "24000"],
+         ];
+ 
+         $path_parts = pathinfo($file_name);
+         switch($path_parts['extension']) {
+            default:
+            case 'csv':
+                //...
+                break;
+ 
+            case 'html':
+                //...
+                break;
+ 
+            case 'xls':
+                $this->actionOutputExcel($data, $file_name);
+                break;
+        }
+    }
+ 
+    function actionOutputExcel($data, $file_name = 'file.xls')
+    {
+        date_default_timezone_set('America/Los_Angeles');
+ 
+        $docExcel = new \PHPExcel();  // requires \vendor\phpoffice\phpexcel\Classes\PHPExcel
+        $docExcel->setActiveSheetIndex(0);
+        $docExcel->getActiveSheet()->fromArray($data, null, 'A1');
+ 
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$file_name.'"');
+        header('Cache-Control: max-age=0');
+ 
+        // Output data
+        $writer = \PHPExcel_IOFactory::createWriter($docExcel, 'Excel5');
+        $writer->save('php://output');
     }
 
     /**

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'fba49af298cddd801b6ab64dc3606014123c921f',
+        'reference' => '3c2181cc687c7735d70423efc744746555f05419',
         'name' => 'yiisoft/yii2-app-basic',
         'dev' => true,
     ),
@@ -318,6 +318,15 @@
             'aliases' => array(),
             'reference' => '6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0',
             'dev_requirement' => true,
+        ),
+        'phpoffice/phpexcel' => array(
+            'pretty_version' => '1.8.2',
+            'version' => '1.8.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoffice/phpexcel',
+            'aliases' => array(),
+            'reference' => '1441011fb7ecdd8cc689878f54f8b58a6805f870',
+            'dev_requirement' => false,
         ),
         'phpspec/php-diff' => array(
             'pretty_version' => 'v1.1.3',
@@ -814,7 +823,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'fba49af298cddd801b6ab64dc3606014123c921f',
+            'reference' => '3c2181cc687c7735d70423efc744746555f05419',
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-bootstrap' => array(
