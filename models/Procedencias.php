@@ -29,7 +29,7 @@ class Procedencias extends \yii\db\ActiveRecord
     {
         return [
             [['procedencia'], 'required'],
-            [['procedencia'], 'string', 'max' => 300],
+            [['procedencia'], 'string'],
         ];
     }
 
