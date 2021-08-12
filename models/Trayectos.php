@@ -8,9 +8,9 @@ use Yii;
  * This is the model class for table "trayectos".
  *
  * @property int $id_trayecto
- * @property string $trayecto
- * @property int $orden
+ * @property int $trayecto
  *
+ * @property EstudiantesSiace[] $estudiantesSiaces
  * @property Proyectos[] $proyectos
  */
 class Trayectos extends \yii\db\ActiveRecord
@@ -29,10 +29,9 @@ class Trayectos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['trayecto', 'orden'], 'required'],
-            [['trayecto'], 'string'],
-            [['orden'], 'default', 'value' => null],
-            [['orden'], 'integer'],
+            [['trayecto'], 'required'],
+            [['trayecto'], 'default', 'value' => null],
+            [['trayecto'], 'integer'],
         ];
     }
 
@@ -44,8 +43,17 @@ class Trayectos extends \yii\db\ActiveRecord
         return [
             'id_trayecto' => 'Id Trayecto',
             'trayecto' => 'Trayecto',
-            'orden' => 'Orden',
         ];
+    }
+
+    /**
+     * Gets query for [[EstudiantesSiaces]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstudiantesSiaces()
+    {
+        return $this->hasMany(EstudiantesSiace::className(), ['id_trayecto' => 'id_trayecto']);
     }
 
     /**

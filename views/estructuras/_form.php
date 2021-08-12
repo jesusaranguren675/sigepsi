@@ -14,7 +14,6 @@ $carreras = \app\models\Carreras::find()->all();
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_carrera')->textInput() ?>
     <?= $form->field($model, "id_carrera")->dropDownList(
                              ArrayHelper::map($carreras, 'id_carrera', 'carrera'),
                              ['prompt' => 'Seleccione']);?>
