@@ -31,7 +31,7 @@ class Trayectos extends \yii\db\ActiveRecord
         return [
             [['trayecto'], 'required'],
             [['trayecto'], 'default', 'value' => null],
-            [['trayecto'], 'integer'],
+            [['trayecto'], 'string'],
         ];
     }
 
