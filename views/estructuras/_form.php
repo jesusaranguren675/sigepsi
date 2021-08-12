@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+$carreras = \app\models\Carreras::find()->all();
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Estructuras */
@@ -13,6 +15,9 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'id_carrera')->textInput() ?>
+    <?= $form->field($model, "id_carrera")->dropDownList(
+                             ArrayHelper::map($carreras, 'id_carrera', 'carrera'),
+                             ['prompt' => 'Seleccione']);?>
 
     <?= $form->field($model, 'id_trayecto')->textInput() ?>
 
