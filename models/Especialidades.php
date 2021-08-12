@@ -8,14 +8,14 @@ use Yii;
  * This is the model class for table "especialidades".
  *
  * @property int $id_especialidad
- * @property string|null $especialidad
- * @property bool|null $mostrar
+ * @property string $especialidad
+ * @property bool $estatus
  *
+ * @property AsesoresEspecialidades[] $asesoresEspecialidades
+ * @property BancoSituaciones[] $bancoSituaciones
  * @property Carreras[] $carreras
  * @property CoordinadoresEspecialidades[] $coordinadoresEspecialidades
- * @property Necesidades[] $necesidades
  * @property Proyectos[] $proyectos
- * @property TutoresEspecialidades[] $tutoresEspecialidades
  */
 class Especialidades extends \yii\db\ActiveRecord
 {
@@ -33,12 +33,9 @@ class Especialidades extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_especialidad'], 'required'],
-            [['id_especialidad'], 'default', 'value' => null],
-            [['id_especialidad'], 'integer'],
-            [['especialidad'], 'string'],
-            [['mostrar'], 'boolean'],
-            [['id_especialidad'], 'unique'],
+            [['especialidad', 'estatus'], 'required'],
+            [['estatus'], 'boolean'],
+            [['especialidad'], 'string', 'max' => 250],
         ];
     }
 
@@ -50,8 +47,28 @@ class Especialidades extends \yii\db\ActiveRecord
         return [
             'id_especialidad' => 'Id Especialidad',
             'especialidad' => 'Especialidad',
-            'mostrar' => 'Mostrar',
+            'estatus' => 'Estatus',
         ];
+    }
+
+    /**
+     * Gets query for [[AsesoresEspecialidades]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAsesoresEspecialidades()
+    {
+        return $this->hasMany(AsesoresEspecialidades::className(), ['id_especialidad' => 'id_especialidad']);
+    }
+
+    /**
+     * Gets query for [[BancoSituaciones]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBancoSituaciones()
+    {
+        return $this->hasMany(BancoSituaciones::className(), ['id_especialidad' => 'id_especialidad']);
     }
 
     /**
@@ -75,16 +92,6 @@ class Especialidades extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Necesidades]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getNecesidades()
-    {
-        return $this->hasMany(Necesidades::className(), ['id_especialidad' => 'id_especialidad']);
-    }
-
-    /**
      * Gets query for [[Proyectos]].
      *
      * @return \yii\db\ActiveQuery
@@ -92,15 +99,5 @@ class Especialidades extends \yii\db\ActiveRecord
     public function getProyectos()
     {
         return $this->hasMany(Proyectos::className(), ['id_especialidad' => 'id_especialidad']);
-    }
-
-    /**
-     * Gets query for [[TutoresEspecialidades]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTutoresEspecialidades()
-    {
-        return $this->hasMany(TutoresEspecialidades::className(), ['id_especialidad' => 'id_especialidad']);
     }
 }
