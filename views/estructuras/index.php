@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EstructurasSearch */
@@ -12,12 +13,21 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estructuras-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- Cintillo -->
+    <div class="cintillo">
+        <?php echo Html::img('@web/imagenes/cintillo.svg'); ?>
+    </div>
+    <!-- Fin Cintillo -->
 
-    <p>
-        <?= Html::a('Create Estructuras', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <!-- Migas de pan -->
+    <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+        <ol class="breadcrumb alert alert-warning">
+            <li class="breadcrumb-item"><a href="<?= Url::toRoute('estructuras/index')?>">Estructuras / </a></li>
+        </ol>
+    </nav>
 
+    <a class="btn btn-primary" href="<?= Url::toRoute('estructuras/create')?>"><i class="fas fa-plus"></i> Crear</a>
+    <!-- Fin Migas de Pan -->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -30,9 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_carrera',
             'id_trayecto',
             'id_linea_investigacion',
-            'id_producto',
-            //'id_item_estructura',
-            //'peso',
+            'peso',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

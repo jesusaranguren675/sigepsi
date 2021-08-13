@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Estructuras;
+use app\models\Lineasinvestigacion;
 
 /**
- * EstructurasSearch represents the model behind the search form of `app\models\Estructuras`.
+ * LineasinvestigacionSearch represents the model behind the search form of `app\models\Lineasinvestigacion`.
  */
-class EstructurasSearch extends Estructuras
+class LineasinvestigacionSearch extends Lineasinvestigacion
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class EstructurasSearch extends Estructuras
     public function rules()
     {
         return [
-            [['id_estructura', 'id_carrera', 'id_trayecto', 'id_linea_investigacion', 'peso'], 'integer'],
+            [['id_linea_investigacion', 'id_carrera'], 'integer'],
+            [['linea_investigacion'], 'safe'],
         ];
     }
 
@@ -39,7 +40,7 @@ class EstructurasSearch extends Estructuras
      */
     public function search($params)
     {
-        $query = Estructuras::find();
+        $query = Lineasinvestigacion::find();
 
         // add conditions that should always apply here
 
@@ -57,12 +58,11 @@ class EstructurasSearch extends Estructuras
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_estructura' => $this->id_estructura,
-            'id_carrera' => $this->id_carrera,
-            'id_trayecto' => $this->id_trayecto,
             'id_linea_investigacion' => $this->id_linea_investigacion,
-            'peso' => $this->peso,
+            'id_carrera' => $this->id_carrera,
         ]);
+
+        $query->andFilterWhere(['ilike', 'linea_investigacion', $this->linea_investigacion]);
 
         return $dataProvider;
     }

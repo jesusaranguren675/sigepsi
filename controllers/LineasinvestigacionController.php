@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Estructuras;
-use app\models\EstructurasSearch;
+use app\models\Lineasinvestigacion;
+use app\models\LineasinvestigacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * EstructurasController implements the CRUD actions for Estructuras model.
+ * LineasinvestigacionController implements the CRUD actions for Lineasinvestigacion model.
  */
-class EstructurasController extends Controller
+class LineasinvestigacionController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class EstructurasController extends Controller
     }
 
     /**
-     * Lists all Estructuras models.
+     * Lists all Lineasinvestigacion models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EstructurasSearch();
+        $searchModel = new LineasinvestigacionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class EstructurasController extends Controller
     }
 
     /**
-     * Displays a single Estructuras model.
+     * Displays a single Lineasinvestigacion model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +58,16 @@ class EstructurasController extends Controller
     }
 
     /**
-     * Creates a new Estructuras model.
+     * Creates a new Lineasinvestigacion model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Estructuras();
+        $model = new Lineasinvestigacion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_estructura]);
+            return $this->redirect(['view', 'id' => $model->id_linea_investigacion]);
         }
 
         return $this->render('create', [
@@ -76,7 +76,7 @@ class EstructurasController extends Controller
     }
 
     /**
-     * Updates an existing Estructuras model.
+     * Updates an existing Lineasinvestigacion model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +87,7 @@ class EstructurasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_estructura]);
+            return $this->redirect(['view', 'id' => $model->id_linea_investigacion]);
         }
 
         return $this->render('update', [
@@ -96,7 +96,7 @@ class EstructurasController extends Controller
     }
 
     /**
-     * Deletes an existing Estructuras model.
+     * Deletes an existing Lineasinvestigacion model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,69 +109,16 @@ class EstructurasController extends Controller
         return $this->redirect(['index']);
     }
 
-    //Filtrar estructuras
-    //--------------------------------------------------------------------
-    public function actionFiltroestructuras()
-    {
-
-        if (Yii::$app->request->isAjax) 
-        {
-
-            $id_carrera     = $_POST['id_carrera'];
-            $id_trayecto    = $_POST['id_trayecto'];
-
-            $estructuras = Yii::$app->db->
-            createCommand("SELECT id_item_estructura, item
-                           FROM items_estructuras
-                           WHERE id_carrera=$id_carrera 
-                           AND id_trayecto=$id_trayecto")->queryAll();
-
-
-            if(empty($estructuras))
-            {
-                $$estructuras = false;
-            }
-
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            if($_POST != "")
-            {
-                return [
-                    'data' => [
-                        'success'        => true,
-                        'message'        => 'Estructura econtrada',
-                        'estructuras'    => $estructuras,
-                    ],
-                    'code' => 0,
-                ];
-            }
-            else
-            {
-                return [
-                    'data' => [
-                        'success' => false,
-                        'message' => 'Ocurrió un error.',
-                    ],
-                'code' => 1, // Some semantic codes that you know them for yourself
-                ];
-            }
-
-        }
-
-    }
-    //Fin Filtrar estructuras
-    //--------------------------------------------------------------------
-
     /**
-     * Finds the Estructuras model based on its primary key value.
+     * Finds the Lineasinvestigacion model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Estructuras the loaded model
+     * @return Lineasinvestigacion the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Estructuras::findOne($id)) !== null) {
+        if (($model = Lineasinvestigacion::findOne($id)) !== null) {
             return $model;
         }
 

@@ -50,9 +50,9 @@ class Estructuras extends \yii\db\ActiveRecord
     {
         return [
             'id_estructura' => 'Id Estructura',
-            'id_carrera' => 'Id Carrera',
-            'id_trayecto' => 'Id Trayecto',
-            'id_linea_investigacion' => 'Id Linea Investigacion',
+            'id_carrera' => 'Carrera',
+            'id_trayecto' => 'Trayecto',
+            'id_linea_investigacion' => 'Linea de Investigacion',
             'id_producto' => 'Id Producto',
             'id_item_estructura' => 'Id Item Estructura',
             'peso' => 'Peso',
